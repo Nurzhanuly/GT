@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <title>Fucking Groupie Trackers</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="header" id="top-header">
+        <h1>Fucking Groupie Trackers</h1>
+    </header>
+
+    <section class="main">
+        <article class="card-table">
+
+            <form class="search-bar" action="/search" method="POST">
+                <input class="input-bar" list="search-bar" id="search-input" name="search-bar" placeholder="type something..." autocomplete="off">
+                <datalist id="search-bar">
+                    {{range .}}
+                    <option value="{{.Name}}">
+                        {{range .Members}}
+                    <option value="{{.}}">
+                        {{end}}
+                    <option value="{{.CreationDate}}">
+                    <option value="{{.FirstAlbum}}">
+                        {{range $city, $date := .RelationsData.DatesLocations}}
+                    <option value={{$city}}>
+                            {{range $date}}
+                    <option value={{.}}>
+                            {{end}}
+                        {{end}}
+                    {{end}}
+                </datalist>
+                <input class="btn" type="submit" value="Search">
+                {{range .}}
+            </form>
+            <form action="/artist" method="POST">
+                <button class="card" name="artist-btn" type="submit" value="{{.Name}}">
+                    <img src="{{.Image}}" width="200" height="200" alt="{{.Name}}">
+                    <h3 class="btn-artist">{{.Name}}</h3>
+                </button>
+                {{end}}
+            </form>
+        </article>
+    </section>
+
+    <script>
+        window.onscroll = function() {scrollFunc()};
+
+        var header = document.getElementById("top-header");
+        var sticky = header.offsetTop;
+
+        function scrollFunc() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+
+    </script>
+</body>
+<footer class="footer">
+    <p class="github-link">Git by <a href="https://github.com/Nurzhanuly">Nurzhanuly</a></p>
+
+</footer>
+</html>

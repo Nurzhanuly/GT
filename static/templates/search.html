@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Name}} | Groupie Tracker</title>
+    <!-- <link rel="stylesheet" href="/static/css/reset.css"> -->
+    <link rel="stylesheet" href="/static/css/search.css">
+</head>
+<body>
+    <header>
+        <a href="http://localhost:8080">Return</a>
+    </header>
+
+    <article class="main">
+        <section class="section-img">
+            <img class="img" src="{{.Image}}" width="300" height="300" alt="{{.Name}}">
+            <div class="bg-img"></div>
+        </section>
+        <section class="section-info">
+            <h1>{{.Name}}</h1>
+            <section class="data">
+                <div class="div-members">
+                    <ul class="group">
+                        <p>Group Members:</p>
+                        {{range .Members}}
+                        <li class="member">{{.}}</li>
+                        {{end}}
+                    </ul>
+                </div>
+                <div class="div-create-album">
+                    <p class="creation-date">Creation Date:</p>
+                    <p>{{.CreationDate}} year</p>
+                    <p class="first-album">First Album:</p>
+                    <p>{{.FirstAlbum}}</p>
+                </div>
+                <div class="concert-dates">
+                    {{range $city, $date := .RelationsData.DatesLocations}}
+                    <p class="city">{{ $city }}</p>
+                    {{range $date}}
+                    <p class="date">{{ . }}</p>
+                    {{end}}
+                    {{end}}
+                </div>
+            </section>
+        </section>
+    </article>
+
+    <!-- <footer class="footer">
+        <p class="github-link">Made by <a href="https://github.com/aidynbaigarinov">Aidyn</a></p>
+        <article class="quote">
+            <p class="quote-p">"One good thing about music, when it hits you, you feel no pain."</p>
+            <h3>Bob Marley</h3>
+        </article>
+    </footer> -->
+    <footer class="footer">
+        <p class="github-link">Git by <a href="https://github.com/Nurzhanuly">Nurzhanuly</a></p>
+    
+    </footer>
+</body>
+
+</html>
